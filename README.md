@@ -1,6 +1,6 @@
 # ADB USB to Wi-Fi — Unplug and Keep Debugging
 
-Plug in your Android phone, enable ADB over Wi-Fi, then unplug and keep debugging. Open Wireless Debugging is a desktop app for macOS, Windows, and Linux. ADB is included.
+Use Open Wireless Debugging to switch your Android phone from USB to Wi-Fi. ADB comes with the desktop app. Once wireless debugging is on, you can unplug the cable.
 
 ## Download 1.0.5
 
@@ -11,16 +11,16 @@ Plug in your Android phone, enable ADB over Wi-Fi, then unplug and keep debuggin
 | Linux · x64 | [TAR.GZ][linux-x64] | [Checksum][linux-x64-sha] | `open-wireless-debugging` |
 | Linux · ARM64 | [TAR.GZ][linux-arm64] | [Checksum][linux-arm64-sha] | `open-wireless-debugging` |
 
-Extract the entire archive into one folder before opening the app. Keep the bundled files together. Linux needs a graphical desktop with GTK 3 and USB access.
+Extract all the files into one folder and open the app from there. On Linux, you’ll need a graphical desktop with GTK 3 and permission to access USB devices.
 
 [Release notes][release] · [Set up USB debugging](#1-enable-usb-debugging) · [Switch to Wi-Fi](#2-enable-adb-over-wi-fi) · [Connect with adb toolbox](#3-connect-with-adb-toolbox) · [Troubleshooting](#troubleshooting)
 
 ## 1. Enable USB debugging
 
-1. On your phone, open **Settings → About phone** and find **Build number**. On Samsung Galaxy, look under **Software information**. If your menus look different, search Settings for **Build number**.
-2. Tap **Build number** seven times. Enter your device PIN if prompted and wait for Android to confirm that Developer options are enabled.
-3. Go back to Settings, open **Developer options**, and turn on **USB debugging**. Depending on your phone, Developer options may be under **System**.
-4. Unlock the phone and connect it to your computer with a USB data cable. When Android asks **Allow USB debugging?**, tap **Allow**. If the prompt hasn’t appeared, leave the phone unlocked and check again after opening the desktop app.
+1. Find **Build number** under **Settings → About phone**. On a Samsung Galaxy, look under **Software information**. You can also search Settings for **Build number**.
+2. Tap **Build number** seven times. If Android asks for your PIN, enter it. You’ll see a message when Developer options are on.
+3. Go back to Settings and turn on **USB debugging** in **Developer options**. Some phones put Developer options under **System**.
+4. Unlock your phone and plug it into your computer with a USB data cable. Tap **Allow** when the phone asks **Allow USB debugging?**. The prompt may appear after you open the desktop app.
 
 <img src="docs/images/phone-usb-debugging.png" alt="USB debugging enabled in Android Developer options" width="320">
 
@@ -28,10 +28,10 @@ Extract the entire archive into one folder before opening the app. Keep the bund
 
 ## 2. Enable ADB over Wi-Fi
 
-1. Open **Open Wireless Debugging** from the extracted folder. If the app opens in a different language, use the **Language** menu to switch to English.
-2. Find your phone under **USB devices**. Once it shows **Ready**, select it and click **Enable wireless debugging**. If several phones are connected, select only the ones you want to enable.
-3. Keep the cable connected while the app is enabling wireless debugging. When the device row says **Wireless debugging is on**, you can unplug that phone.
-4. If you’ll connect from another device, note the address displayed under the success message. If no address appears, look up the phone’s IP address in its network settings and use port `5555`.
+1. Start **Open Wireless Debugging** from the folder you extracted. You can switch to English in the **Language** menu.
+2. Under **USB devices**, wait for your phone to show **Ready**. Select it and click **Enable wireless debugging**. If you have several phones plugged in, select each one you want to use wirelessly.
+3. Wait until you see **Wireless debugging is on** next to your phone before unplugging it.
+4. For connections from another device, copy the address below **Wireless debugging is on**.
 
 ![A USB device marked Ready with the Enable wireless debugging button](docs/images/02-device-ready.png)
 
@@ -39,39 +39,39 @@ Extract the entire archive into one folder before opening the app. Keep the bund
 
 ## 3. Connect with adb toolbox
 
-Open adb toolbox on your Android device. If you need to install it, get [ADB Shell – Debug Toolbox on Google Play][adb-toolbox].
+Open adb toolbox on the phone you’ll connect from. You’ll find it on Google Play as [ADB Shell – Debug Toolbox][adb-toolbox].
 
 ### Connect to the same phone
 
-1. On the phone you just enabled, open **Devices**, tap **Add new device**, and choose **Local connection**.
+1. On the same phone, go to **Devices → Add new device → Local connection**.
 2. Choose **Universal method**, tap **Continue**, and turn off **Pairing code**.
-3. Enter `127.0.0.1` as the IP address and `5555` as the connection port. Tap **Connect**. The same-phone connection works without Wi-Fi.
+3. Enter `127.0.0.1` for the IP address and `5555` for the port. Tap **Connect**. You can do this with Wi-Fi off.
 
 ### Connect to another phone
 
-1. Connect both phones to the same trusted Wi-Fi network. Use the IP address shown for the target phone in the desktop app or look it up on that phone.
-2. On the phone running adb toolbox, open **Devices**, tap **Add new device**, and choose **Remote connection**.
-3. Choose **Universal method**, tap **Continue**, and turn off **Pairing code**. If an introductory guide appears, dismiss it and scroll back to the connection form.
-4. In **IP address or domain**, enter the target phone’s IP. In **Connection port**, enter `5555`, then tap **Connect**. The screenshot shows `192.0.2.10` as an example. Use your phone’s actual IP.
+1. Put both phones on the same trusted Wi-Fi network. Copy the IP address of the phone you want to connect to from the desktop app, or check that phone’s network settings.
+2. In adb toolbox, go to **Devices → Add new device → Remote connection**.
+3. Choose **Universal method**, tap **Continue**, and turn off **Pairing code**. If a guide pops up, close it and scroll back to the top of the form.
+4. Enter the other phone’s IP under **IP address or domain** and `5555` under **Connection port**. Tap **Connect**. The IP in the screenshot is just an example.
 
 <img src="docs/images/phone-remote-connection.png" alt="adb toolbox remote connection form showing the IP address and port in separate fields" width="320">
 
-Back on the **Devices** page, confirm the phone shows **Connected**. Tap its gear icon and choose **Select this device** to use it in adb toolbox.
+Go back to **Devices** and look for **Connected**. Tap the gear next to the phone and choose **Select this device**.
 
 ## Troubleshooting
 
 | What you see | What to try |
 | --- | --- |
 | macOS blocks the first launch | The app is ad hoc signed. Try opening it, then go to **System Settings → Privacy & Security → Open Anyway** and confirm. On a managed Mac, ask your administrator. [Apple’s instructions][apple-gatekeeper] |
-| The phone doesn’t appear or is waiting for authorization | Unlock it, check that USB debugging is on, and accept the prompt. Reconnect the cable or try another USB data cable or port. |
+| The phone doesn’t show up | Unlock it, turn on **USB debugging**, and tap **Allow** if prompted. Still missing? Try another USB port or data cable. |
 | Windows still can’t see the phone | Install the appropriate [USB driver][android-drivers] for your device, then reconnect it. |
 | Linux reports a USB permission error | Check your distribution’s Android udev rules and USB group permissions, then reconnect the phone. [Android’s device setup instructions][android-usb-setup] |
-| The device keeps disappearing or activation fails | Close other desktop tools using ADB, reconnect and authorize the phone, then choose **Retry failed attempts** when it becomes available. If the device is still working, leave the cable in until it finishes. |
+| The phone keeps disappearing or setup fails | Close other apps using ADB, plug the phone back in, and tap **Allow** if prompted. Once the phone is **Ready**, click **Retry failed attempts**. |
 | adb toolbox can’t connect | Check that **Pairing code** is off and the port is `5555`. For another phone, check its current IP and use the same Wi-Fi network. Guest networks may block connections between devices. |
 | The phone rebooted | Reconnect it over USB and enable ADB over Wi-Fi again. |
-| The phone changed Wi-Fi networks | Look up its new IP address and use that address with port `5555`. If only the IP changed, try reconnecting before repeating the USB setup. |
+| The phone changed Wi-Fi networks | Find the new IP in the phone’s network settings and reconnect on port `5555`. If only the IP changed, try reconnecting before setting up USB again. |
 
-On supported Android 11 and later devices, Android’s built-in [Wireless debugging][android-wireless] also offers a pairing-code workflow.
+If your phone runs Android 11 or later and has a [Wireless debugging][android-wireless] setting, you can also connect with a pairing code.
 
 [release]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/tag/v1.0.5
 [macos]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.5/Open-Wireless-Debugging-1.0.5-macos.zip
