@@ -2,16 +2,19 @@
 
 Use Open Wireless Debugging to switch your Android phone from USB to Wi-Fi. ADB comes with the desktop app. Once wireless debugging is on, you can unplug the cable.
 
-## Download 1.0.5
+## Download 1.0.6
+
+Each download is under 25 MB.
 
 | Platform | Download | SHA-256 | Open after extracting |
 | --- | --- | --- | --- |
-| macOS 12 or later · Intel and Apple Silicon | [ZIP][macos] | [Checksum][macos-sha] | `Open Wireless Debugging.app` |
+| macOS 12 or later · Apple Silicon | [ZIP][macos-arm64] | [Checksum][macos-arm64-sha] | `Open Wireless Debugging.app` |
+| macOS 12 or later · Intel | [ZIP][macos-x64] | [Checksum][macos-x64-sha] | `Open Wireless Debugging.app` |
 | Windows 10 or 11 · x64 | [ZIP][windows] | [Checksum][windows-sha] | `Open Wireless Debugging.exe` |
-| Linux · x64 | [TAR.GZ][linux-x64] | [Checksum][linux-x64-sha] | `open-wireless-debugging` |
-| Linux · ARM64 | [TAR.GZ][linux-arm64] | [Checksum][linux-arm64-sha] | `open-wireless-debugging` |
+| Linux · x64 | [TAR.XZ][linux-x64] | [Checksum][linux-x64-sha] | `open-wireless-debugging` |
+| Linux · ARM64 | [TAR.XZ][linux-arm64] | [Checksum][linux-arm64-sha] | `open-wireless-debugging` |
 
-Extract all the files into one folder and open the app from there. On Linux, you’ll need a graphical desktop with GTK 3 and permission to access USB devices.
+On macOS, choose **Apple Silicon** if About This Mac shows an Apple chip and **Intel** if it shows an Intel processor. Open the ZIP in Finder. On Windows, right-click the ZIP and choose **Extract All**. On Linux, use your archive manager or run `tar -xJf <filename>.tar.xz`. Open the app from the extracted folder. Linux needs a graphical desktop with GTK 3 and USB access.
 
 [Release notes][release] · [Set up USB debugging](#1-enable-usb-debugging) · [Switch to Wi-Fi](#2-enable-adb-over-wi-fi) · [Connect with adb toolbox](#3-connect-with-adb-toolbox) · [Troubleshooting](#troubleshooting)
 
@@ -73,15 +76,17 @@ Go back to **Devices** and look for **Connected**. Tap the gear next to the phon
 
 If your phone runs Android 11 or later and has a [Wireless debugging][android-wireless] setting, you can also connect with a pairing code.
 
-[release]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/tag/v1.0.5
-[macos]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.5/Open-Wireless-Debugging-1.0.5-macos.zip
-[macos-sha]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.5/Open-Wireless-Debugging-1.0.5-macos.zip.sha256
-[windows]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.5/Open-Wireless-Debugging-1.0.5-windows.zip
-[windows-sha]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.5/Open-Wireless-Debugging-1.0.5-windows.zip.sha256
-[linux-x64]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.5/Open-Wireless-Debugging-1.0.5-linux-x64.tar.gz
-[linux-x64-sha]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.5/Open-Wireless-Debugging-1.0.5-linux-x64.tar.gz.sha256
-[linux-arm64]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.5/Open-Wireless-Debugging-1.0.5-linux-arm64.tar.gz
-[linux-arm64-sha]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.5/Open-Wireless-Debugging-1.0.5-linux-arm64.tar.gz.sha256
+[release]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/tag/v1.0.6
+[macos-arm64]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-macos-arm64.zip
+[macos-arm64-sha]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-macos-arm64.zip.sha256
+[macos-x64]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-macos-x64.zip
+[macos-x64-sha]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-macos-x64.zip.sha256
+[windows]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-windows.zip
+[windows-sha]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-windows.zip.sha256
+[linux-x64]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-linux-x64.tar.xz
+[linux-x64-sha]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-linux-x64.tar.xz.sha256
+[linux-arm64]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-linux-arm64.tar.xz
+[linux-arm64-sha]: https://github.com/jarhot1992/adb-usb-to-wifi/releases/download/v1.0.6/Open-Wireless-Debugging-1.0.6-linux-arm64.tar.xz.sha256
 [nextaix-guide]: https://nextaix.com/adb-help/tutorials/usb-debugging
 [adb-toolbox]: https://play.google.com/store/apps/details?id=com.github.standardadb
 [apple-gatekeeper]: https://support.apple.com/en-us/102445
