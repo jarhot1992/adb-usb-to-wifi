@@ -14,10 +14,10 @@ Use ADB USB to Wi-Fi to enable wireless debugging on an Android device from macO
 | Linux · x64 | [TAR.XZ][linux-x64] | [Checksum][linux-x64-sha] | `open-wireless-debugging` |
 | Linux · ARM64 | [TAR.XZ][linux-arm64] | [Checksum][linux-arm64-sha] | `open-wireless-debugging` |
 
-Extract the archive and open the app listed for your platform.
+Extract all files from the ZIP or TAR.XZ archive into the same folder, then open the app listed for your platform.
 
 - **On macOS**, check **About This Mac** to choose the Apple Silicon or Intel build.
-- **On Windows**, right-click the ZIP and select **Extract All**.
+- **On Windows**, choose the x64 build, right-click the ZIP, and select **Extract All**. On Windows 11 ARM64, you can try running this build in x64 compatibility mode.
 - **On Linux**, use an archive manager or run `tar -xJf <filename>.tar.xz`. The app requires a graphical desktop with GTK 3 and USB access.
 
 [Release notes][release]
@@ -66,20 +66,28 @@ Run shell commands and inspect Logcat in the terminal. You can also manage insta
 
 ## 1. Enable USB debugging
 
-1. Open **Settings → About phone**. Tap **Build number** repeatedly until Android confirms that developer options are enabled. If the entry is missing, search Settings for **Build number**.
+1. Open **Settings → About phone** and find **Build number**. On Samsung Galaxy, go to **About phone → Software information → Build number**. If the menu looks different, search Settings for **Build number**.
 
-   <img src="docs/images/build-number.webp" alt="Tap Build number, shown in the red box." width="420">
+   <img src="docs/images/build-number.webp" alt="Build number is near the bottom of About phone." width="420">
 
-   *The location of **Build number** varies by phone.*
-2. Return to Settings, open **Developer options**, and enable **USB debugging**.
+   *Build number is near the bottom of About phone.*
+2. Tap **Build number** seven times. Enter your screen lock PIN or password if prompted. When Android confirms that developer options are enabled, return to Settings.
+3. Open **Developer options**, usually under **System**. If the entry is missing, search Settings for **Developer options**.
 
-   <img src="docs/images/phone-usb-debugging.png" alt="Turn on the switch next to USB debugging." width="320">
+   <img src="docs/images/developer-options.webp" alt="Open Developer options in System settings." width="320">
 
-   *The **USB debugging** switch in Developer options.*
-3. Unlock the phone and connect it to the computer with a USB data cable.
+   *Open Developer options in System settings.*
+4. Scroll to **Debugging** and enable **USB debugging**. Tap **OK** if Android asks you to confirm.
 
-   If the desktop app does not list the phone, see [Desktop launch and USB detection](#desktop-launch-and-usb-detection).
-4. When **Allow USB debugging?** appears, tap **Allow**. If the prompt is delayed, open the desktop app and check the phone again.
+   <img src="docs/images/phone-usb-debugging.png" alt="USB debugging is switched on in Developer options." width="320">
+
+   *USB debugging is switched on in Developer options.*
+5. Unlock the phone and connect it to the computer with a USB data cable. Launch Open Wireless Debugging from the extracted folder.
+6. When **Allow USB debugging?** appears with the computer’s RSA fingerprint, confirm that it is the computer you just connected and tap **Allow**.
+
+   If you have authorized this computer before, the phone may connect without showing the prompt again. If the prompt is delayed, check the phone again after opening the desktop app.
+
+   If the app does not list the phone or still requires authorization, see [Desktop launch and USB detection](#desktop-launch-and-usb-detection). For more connection checks, see [USB authorization and device status](https://nextaix.com/adb-help/tutorials/usb-debugging#connection-check).
 
 If USB debugging is missing or grayed out, check the [instructions for your phone’s brand or operating system](https://nextaix.com/adb-help/tutorials/device-debugging-restrictions#device-brands).
 
@@ -92,6 +100,8 @@ If USB debugging is missing or grayed out, check the [instructions for your phon
    *The desktop app while it waits for a USB device.*
 2. Under **USB devices**, wait for the target phone to show **Ready**. Select its checkbox and click **Enable wireless debugging**. If several phones appear, select only the one you want to set up.
 
+   If the phone never shows **Ready**, see [Desktop launch and USB detection](#desktop-launch-and-usb-detection).
+
    ![Check the box next to your phone, then click Enable wireless debugging in the bottom-right corner.](docs/images/02-device-ready.png)
 
    *The **Enable wireless debugging** button is in the lower-right corner.*
@@ -100,7 +110,7 @@ If USB debugging is missing or grayed out, check the [instructions for your phon
    ![Enabling… under the phone’s name means setup is still in progress. Wait for the confirmation.](docs/images/03-enabling.png)
 
    *The desktop app shows progress under the phone’s name.*
-4. Unplug the phone once the green **Wireless debugging is on** message appears. The app also displays **Wireless debugging enabled** to confirm success.
+4. Unplug the phone once the green **Wireless debugging is on** message appears. Some versions display **Wireless debugging enabled**.
 
    Continue with the [local connection](#connect-to-the-same-phone) or the [remote connection](#connect-to-another-phone) in ADB Shell.
 
@@ -134,7 +144,7 @@ If USB debugging is missing or grayed out, check the [instructions for your phon
 
 1. Return to **Devices** and check that the phone shows **Connected**.
 2. Tap the gear next to the phone and choose **Select this device**. Wait for **Device selected**.
-3. Open **Terminal**. Select the device under **Device list** or switch to its existing tab. Run `pwd`. A directory path, including `/`, confirms that the device is responding.
+3. Open **Terminal**. Under **Device list**, select the terminal card with the device’s name, or switch to its existing tab. Run `pwd`. A directory path, including `/`, confirms that the device is responding.
 
    If the command produces no output, see [troubleshooting ADB commands](https://nextaix.com/adb-help#faq-command-not-working).
 
